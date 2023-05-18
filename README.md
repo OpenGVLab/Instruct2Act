@@ -1,0 +1,78 @@
+# Instruct2Act
+
+Foundation models have made significant strides in various applications, including text-to-image generation, panoptic segmentation, and natural language processing. This paper presents Instruct2Act, a framework that utilizes Large Language Models to map multi-modal instructions to sequential actions for robotic manipulation tasks. Specifically, Instruct2Act employs the LLM model to generate Python programs that constitute a comprehensive perception, planning, and action loop for robotic tasks. In the perception section, pre-defined APIs are used to access multiple foundation models where the Segment Anything Model (SAM) accurately locates candidate objects, and CLIP classifies them. In this way, the framework leverages the expertise of foundation models and robotic abilities to convert complex high-level instructions into precise policy codes. Our approach is adjustable and flexible in accommodating various instruction modalities and input types and catering to specific task demands. We validated the practicality and efficiency of our approach by assessing it on robotic tasks in different scenarios within tabletop manipulation domains. Furthermore, our zero-shot method outperformed many state-of-the-art learning-based policies in several tasks. 
+
+![framework](images/instruct2act_framework.png)
+
+- [Instruct2Act](#instruct2act)
+  - [Supported Modules](#supported-modules)
+  - [How to run](#how-to-run)
+  - [Prompts Setting](#prompts-setting)
+  - [Evaluation Tasks](#evaluation-tasks)
+  - [Notes](#notes)
+  - [Acknowledgement](#acknowledgement)
+
+## Supported Modules
+
+Currently, we support the following modules:
+
+![modules](images/modules_api.png)
+
+Correspondingly, please prepare the SAM and CLIP model ckpts in advance. You can download the ckpts from [SAM](https://github.com/facebookresearch/segment-anything#model-checkpoints) and [OpenCLIP](https://github.com/mlfoundations/open_clip). Then set the path in the file 'engine_robotic.py'.
+
+You can also add your personlized modules in 'engine_robotic.py', and add the API definition in the prompt files.
+
+## How to run
+
+1. Install the required packages with the provided *environment.yaml*
+
+2. Install the VIMABench with [VIMABench](https://github.com/vimalabs/VimaBench).
+
+3. Change the OpenAI API-key in *visual_programming_prompt/prompt_generation.py*
+
+4. run the *robotic_anything_gpt_online.py*.
+
+## Prompts Setting
+
+In Instruct2Act, we implement two types of prompts, i.e., **task-specific** and **task-agnostic** prompts. The task-specific prompts are designed for specific tasks which is in the VISPROG style, and the task-agnostic prompts are designed for general purpose, and it is in ViperGPT plus VISPROG style. We provide more details in the our paper. And you can change the setting in the file *visual_programming_prompt/robotic_exec_generation.py*. For very specific tasks like robotic manipulations where you know the flow clearly, we suggest to use the task-specific prompts. For general purpose, we suggest to use the task-agnostic prompts. These two prompts are stored in *visual_programm_prompt.py* and *full_prompt.ini* respectively.
+
+Besides the language prompts, we also provide the pointing-language enhanced prompts where cursor click will be used to select the target objects. You can see the details with funcation *SAM()* in *engine_robotic.py*. 
+
+We provide two code generation mode for robotic manipulation tasks, i.e., **offline** and **online** mode. The codes with offline mode are generated in advance and summarized with expert knowledge, and this type is used for the demo and quick-trail usage. The online mode are generated on the fly, and this type is used for the general purpose.
+
+## Evaluation Tasks
+
+We select six representative meta tasks from VIMABench (17 tasks in total) to evaluate the proposed methods in the tabletop manipulation domain, as shown in below. To run the evaluation, please follow the instructions in the [VIMABench](https://github.com/vimalabs/VimaBench).
+
+| Task | Instruction | Visualization |
+|:---:|:---:|:---:|
+| Visual Manipulation | Put the  { object_1}  into the  {object_2} | ![task01](images/tasks_gif/task01.gif) |
+| Scene Understanding | Put the  { texture_1}  object in  { scene }  into the  { texture_2}   object. | ![task01](images/tasks_gif/task02.gif) |
+| Rotation | Rotate the  { object_1}  { angles }  degrees | ![task01](images/tasks_gif/task03.gif) |
+| Rearrange | Rearrange to this  { scene } | ![task01](images/tasks_gif/task04.gif) |
+| Rearrange then restore | Rearrange objects to this setup  { scene }  and then restore. | ![task01](images/tasks_gif/task05.gif) |
+| Pick in order then restore | Put  { object_1}  into  { object_2} . Finally restore it into its original container. | ![task01](images/tasks_gif/task17.gif) |
+
+## Notes
+
+1. To speed up the SAM inference progress, we add **cuda** device option in **function build_sam()**, you should modify it accordingly in the source code and then recompile the package.
+
+2. During evaluation, we set the "hide_arm=True" and close the debug_window. If you want to visualize the arm movement, please set them correctly.
+
+3. The orignal movement in VIMABench is quite quick, if you want to slow down the movement, please add some lines like *sleep()* in VIMABench.
+
+4. When use ChatGPT for generation, you need to mange some network stuff. Also, we found that when the network situation is not ideal, sometimes the generated codes are in bad quality (incomplete or too short).
+
+## Acknowledgement
+
+We would like to thank the authors of the following great projects, this project is built upon these great open-sourced projects.
+
+- [VIMABench](https://github.com/vimalabs/VimaBench)
+- [OpenCLIP](https://github.com/mlfoundations/open_clip)
+- [SAM](https://github.com/facebookresearch/segment-anything#model-checkpoints)
+
+We are also inspired by the following projects:
+
+- [Viper](https://github.com/cvlab-columbia/viper)
+- [TaskMatrix](https://github.com/microsoft/TaskMatrix)
+- [visprog](https://github.com/allenai/visprog)
