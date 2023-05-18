@@ -160,21 +160,6 @@ def retriev_with_template_image(
 
 
 @torch.no_grad()
-def retriev_with_scene_image(elements: list[Image.Image], search_scene_image) -> int:
-    # first get the object lists from the search_scene_image
-    preprocessed_search_scene_image = (
-        preprocess(search_scene_image).unsqueeze(0).to(device)
-    )
-    search_scene_image_features = model.encode_image(preprocessed_search_scene_image)
-    search_scene_image_features /= search_scene_image_features.norm(
-        dim=-1, keepdim=True
-    )
-
-    # TODO here
-    pass
-
-
-@torch.no_grad()
 def get_img_features(imgs: list[Image.Image]):
     preprocessed_imgs = [preprocess(img).to(device) for img in imgs]
     stacked_imgs = torch.stack(preprocessed_imgs)
@@ -409,6 +394,7 @@ def SAM(image, with_click=sam_pred_with_click, image_preprocess_flag=True, mask_
     ), "the initialzaition of sam is not consistent with the current setting"
 
     if with_click:
+        # use cursor click to guide the SAM
         mask_generator.set_image(image)
         global cid, fig, click_points
         fig = plt.figure(1)
@@ -420,13 +406,6 @@ def SAM(image, with_click=sam_pred_with_click, image_preprocess_flag=True, mask_
         ax.clear()
         plt.close('all') 
 
-        # show the click points
-        # fig = plt.figure(1)
-        # ax = fig.add_subplot(111)
-        # ax.imshow(image)
-        # for point in click_points:
-        #     ax.plot(point[0], point[1], "ro")
-        # plt.show()
         masks_all_click = []
         for point in click_points:
             input_point = np.array([[point[0], point[1]]])
@@ -445,7 +424,7 @@ def SAM(image, with_click=sam_pred_with_click, image_preprocess_flag=True, mask_
     return MASKS
 
 
-def GetObsImage(obs) -> Image.Image:
+def GetObsImage(obs):
     """Get the current image to start the system.
     Examples:
         image = GetObsImage()

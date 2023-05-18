@@ -46,12 +46,12 @@ We select six representative meta tasks from VIMABench (17 tasks in total) to ev
 
 | Task | Instruction | Visualization |
 |:---:|:---:|:---:|
-| Visual Manipulation | Put the  { object_1}  into the  {object_2} | ![task01](images/tasks_gif/task01.gif) |
-| Scene Understanding | Put the  { texture_1}  object in  { scene }  into the  { texture_2}   object. | ![task01](images/tasks_gif/task02.gif) |
-| Rotation | Rotate the  { object_1}  { angles }  degrees | ![task01](images/tasks_gif/task03.gif) |
-| Rearrange | Rearrange to this  { scene } | ![task01](images/tasks_gif/task04.gif) |
-| Rearrange then restore | Rearrange objects to this setup  { scene }  and then restore. | ![task01](images/tasks_gif/task05.gif) |
-| Pick in order then restore | Put  { object_1}  into  { object_2} . Finally restore it into its original container. | ![task01](images/tasks_gif/task17.gif) |
+| Visual Manipulation | Put the  polka dot block  into the  green container. | ![task01](images/tasks_gif/task01.gif) |
+| Scene Understanding | Put the  blue paisley  object in  another given scene image  into the  green object. | ![task01](images/tasks_gif/task02.gif) |
+| Rotation | Rotate the  letter-M 30  degrees | ![task01](images/tasks_gif/task03.gif) |
+| Rearrange | Rearrange to the target scene. | ![task01](images/tasks_gif/task04.gif) |
+| Rearrange then restore | Rearrange objects to target scene and then restore. | ![task01](images/tasks_gif/task05.gif) |
+| Pick in order then restore | Put the cyan block into the yellow square then into the white-black square. Finally restore it into its original container. | ![task01](images/tasks_gif/task17.gif) |
 
 ## Notes
 

@@ -1,9 +1,9 @@
 import os
 import openai
 
-# Set the proxy based on your environment
-os.environ["http_proxy"] = "http://127.0.0.1:58591"
-os.environ["https_proxy"] = "http://127.0.0.1:58591"
+# Set the proxy based on your environment if needed
+# os.environ["http_proxy"] = "http://127.0.0.1:58591"
+# os.environ["https_proxy"] = "http://127.0.0.1:58591"
 
 # load different types of prompt
 from visual_programming_prompt.object_query_prompt import PROMPT as object_query_prompt

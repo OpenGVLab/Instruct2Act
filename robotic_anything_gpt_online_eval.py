@@ -267,43 +267,41 @@ if __name__ == "__main__":
         "scene_understanding",
     ]
     partitions = [
-        # "placement_generalization",
+        "placement_generalization",
         "combinatorial_generalization",
-        # "novel_object_generalization",
+        "novel_object_generalization",
     ]
     save_dir = "output"
     if not os.path.exists(save_dir):
         os.makedirs(save_dir)
-    # for seed in [42, 66, 88]:
-    for seed in [42]:
-        # for hide_arm in [False]:
-        for hide_arm in [False]:
-            for task in tasks:
-                for partition in partitions:
-                    for modal in prompt_modal:
-                        eval_cfg = {
-                            "partition": partition,
-                            "task": task,
-                            "device": "cuda:0",
-                            "prompt_modal": modal,
-                            "reuse": False,
-                            "save_dir": save_dir,
-                            "debug_flag": True,
-                            "hide_arm": hide_arm,
-                            "seed": seed,
-                        }
-                        logger_file = (
-                            save_dir
-                            + "/eval_task2_on_seed_{}_hide_arm_{}_{}_{}_{}_modal.log".format(
-                                eval_cfg["seed"],
-                                eval_cfg["hide_arm"],
-                                partition,
-                                task,
-                                modal,
-                            )
-                        )
-                        if os.path.exists(path=logger_file):
-                            os.remove(logger_file)
-                        logger = create_logger(logger_file)
-                        main(EasyDict(eval_cfg), logger)
-                        del logger
+    seed = 42
+    hide_arm =False # False for demo usage, True for eval usage
+    for task in tasks:
+        for partition in partitions:
+            for modal in prompt_modal:
+                eval_cfg = {
+                    "partition": partition,
+                    "task": task,
+                    "device": "cuda:0",
+                    "prompt_modal": modal,
+                    "reuse": False,
+                    "save_dir": save_dir,
+                    "debug_flag": True,
+                    "hide_arm": hide_arm,
+                    "seed": seed,
+                }
+                logger_file = (
+                    save_dir
+                    + "/eval_on_seed_{}_hide_arm_{}_{}_{}_{}_modal.log".format(
+                        eval_cfg["seed"],
+                        eval_cfg["hide_arm"],
+                        partition,
+                        task,
+                        modal,
+                    )
+                )
+                if os.path.exists(path=logger_file):
+                    os.remove(logger_file)
+                logger = create_logger(logger_file)
+                main(EasyDict(eval_cfg), logger)
+                del logger
