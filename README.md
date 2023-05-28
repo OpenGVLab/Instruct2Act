@@ -63,7 +63,7 @@ We select six representative meta tasks from VIMABench (17 tasks in total) to ev
 
 2. During evaluation, we set the "hide_arm=True" and close the debug_window. If you want to visualize the arm movement, please set them correctly.
 
-3. The orignal movement in VIMABench is quite quick, if you want to slow down the movement, please add some lines like *sleep()* in VIMABench.
+3. The original movement in VIMABench is quite quick, if you want to slow down the movement, please add some lines like *sleep()* in VIMABench.
 
 4. When use ChatGPT for generation, you need to mange some network stuff. Also, we found that when the network situation is not ideal, sometimes the generated codes are in bad quality (incomplete or too short).
 
