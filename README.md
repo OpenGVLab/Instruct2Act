@@ -29,10 +29,11 @@ You can also add your personlized modules in 'engine_robotic.py', and add the AP
 ## How to run
 
 1. Install the required packages with the provided *environment.yaml*
+    - If you meet any install issue, you can take a look at [Issue](https://github.com/OpenGVLab/Instruct2Act/issues/6). Thanks for @[euminds](https://github.com/euminds).
 
 2. Install the VIMABench with [VIMABench](https://github.com/vimalabs/VimaBench).
 
-3. Change the OpenAI API-key in *visual_programming_prompt/prompt_generation.py*
+3. Change the OpenAI API-key in *visual_programming_prompt/robotic_exec_generation.py*
 
 4. run the *robotic_anything_gpt_online.py*.
 
