@@ -15,6 +15,12 @@ Large Language Model**](https://arxiv.org/pdf/2305.11176.pdf)
   - [Evaluation Tasks](#evaluation-tasks)
   - [Notes](#notes)
   - [Acknowledgement](#acknowledgement)
+ 
+## Updates:
+
+1. Real-world demo videos can be found on [YouTube](https://www.youtube.com/playlist?list=PLfh183PHOgz_ZYfcUrkZpf1Dri4cN5r2w)
+2. We are extremely happy that one industrial company used our I2A to do the flexible manipulation task, more demos are on the way! Stay Tuned.
+3. [3024-03-19] We are happy to announce the updated version: [ManipVQA](https://github.com/SiyuanHuang95/ManipVQA). Unlike I2A, ManipVQA focuses more on affordance and physical concept reasoning! Ckpts are released! 
 
 ## Supported Modules
 
