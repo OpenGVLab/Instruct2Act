@@ -20,7 +20,8 @@ Large Language Model**](https://arxiv.org/pdf/2305.11176.pdf)
 
 1. Real-world demo videos can be found on [YouTube](https://www.youtube.com/playlist?list=PLfh183PHOgz_ZYfcUrkZpf1Dri4cN5r2w)
 2. We are thrilled that one industrial company (Intewell with Intel) used our I2A to do the flexible manipulation task, more demos are on the way! Stay Tuned. The Video could be found in [Bilibili](https://www.bilibili.com/video/BV12x4y127DK/?vd_source=46bd368e7db8357d25fc181749f07c57).
-3. [2024-03-19] We are happy to announce the updated version: [ManipVQA](https://github.com/SiyuanHuang95/ManipVQA). Unlike I2A, ManipVQA focuses more on affordance and physical concept reasoning! Ckpts are released! 
+3. [2024-03-19] We are happy to announce the updated version: [ManipVQA](https://github.com/SiyuanHuang95/ManipVQA). Unlike I2A, ManipVQA focuses more on affordance and physical concept reasoning! Ckpts are released!
+4. [2024-06] We further extend the 2D version ManipVQA into 3D Articulated one, named A3VLM. Codes, Ckpts and Dataset can be found at [A3VLM](https://github.com/changhaonan/A3VLM).
 
 ## Supported Modules
 
